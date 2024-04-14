@@ -8,7 +8,9 @@ import edu.sejong.ex.vo.BoardVO;
 
 @Mapper
 public interface BoardMapper {
-	List<BoardVO> selectList();
-	int insert(BoardVO boardVO);
-	int delete(BoardVO boardVO);
+	List<BoardVO> getList();
+	BoardVO read(int bno);
+	
+//	int insert(BoardVO boardVO);
+//	int delete(BoardVO boardVO);
 }
