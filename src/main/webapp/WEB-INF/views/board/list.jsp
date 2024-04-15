@@ -29,7 +29,7 @@
 <%-- 			<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bdate}" /></td> --%>
             <td align="center">${board.bhit}</td>
             <td>
-               <a href="${pageContext.request.contextPath}/board/remove?bid=${board.bid}"><button type="button">삭제</button></a>
+               <a href="${pageContext.request.contextPath}/board/delete?bid=${board.bid}"><button type="button">삭제</button></a>
             </td>
          </tr>
       </c:forEach>

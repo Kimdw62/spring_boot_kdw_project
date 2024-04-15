@@ -26,14 +26,14 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO get(int bno) {
 		log.info("get()...");
-		
+
+		boardMapper.updateHit(bno);
 		return boardMapper.read(bno);
 	}
 
 	@Override
 	public int remove(int bid) {
 		log.info("remove()...");
-		
 		return boardMapper.delete(bid);
 	}
 

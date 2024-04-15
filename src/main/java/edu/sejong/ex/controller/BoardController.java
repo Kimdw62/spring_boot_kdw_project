@@ -67,7 +67,7 @@ public class BoardController {
 		return "/board/reply_view";
 	}
 
-	@GetMapping("/reply")
+	@PostMapping("/reply")
 	public String reply(BoardVO boardVO) {
 		System.out.println("reply()...");
 		boardService.writeReply(boardVO);

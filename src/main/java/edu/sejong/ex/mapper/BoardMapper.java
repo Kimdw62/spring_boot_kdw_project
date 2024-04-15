@@ -9,10 +9,14 @@ import edu.sejong.ex.vo.BoardVO;
 @Mapper
 public interface BoardMapper {
 	List<BoardVO> getList();
+
+	public void updateHit(int bno);
 	BoardVO read(int bno);
+	
 	int delete(int bid);
 	int insertBoard(BoardVO boardVO);
 	int updateBoard(BoardVO boardVO);
+	
 	public void updateShape(BoardVO boardVO);
 	public void insertReply(BoardVO boardVO);
 }
