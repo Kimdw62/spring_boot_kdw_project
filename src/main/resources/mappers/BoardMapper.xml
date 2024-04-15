@@ -11,6 +11,12 @@
     ]]>
     </select>
 
+    <update id="updateHit" parameterType="BoardVO">
+    <![CDATA[
+    	update mvc_board set bHit = bHit + 1 where bId = #{bno}
+    ]]>
+    </update>
+
     <select id="read" resultType="BoardVO">
     <![CDATA[
         select * from mvc_board where bid = #{bno}

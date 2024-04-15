@@ -13,10 +13,12 @@ public interface BoardMapper {
 	public void updateHit(int bno);
 	BoardVO read(int bno);
 	
+//	int updateHit(BoardVO boardVO);
+	
 	int delete(int bid);
 	int insertBoard(BoardVO boardVO);
 	int updateBoard(BoardVO boardVO);
 	
-	public void updateShape(BoardVO boardVO);
+	public void updateShape(BoardVO boardVO);	//댓글-답변
 	public void insertReply(BoardVO boardVO);
 }

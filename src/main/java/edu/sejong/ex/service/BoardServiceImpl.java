@@ -28,9 +28,19 @@ public class BoardServiceImpl implements BoardService {
 		log.info("get()...");
 
 		boardMapper.updateHit(bno);
+		
+//		BoardVO board = new BoardVO();
+//		board.setBid(bno);
+//		updateHit(board);
+		
 		return boardMapper.read(bno);
 	}
 
+//	public void updateHit(BoardVO board) {
+//		log.info("updateHit()...");
+//		boardMapper.updateHit(board);
+//	}
+	
 	@Override
 	public int remove(int bid) {
 		log.info("remove()...");

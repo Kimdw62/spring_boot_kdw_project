@@ -22,6 +22,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		log.info("list();...");
+
 		model.addAttribute("boards", boardService.getList());
 		return "/board/list";
 	}
@@ -29,6 +30,7 @@ public class BoardController {
 	@GetMapping("/content_view")
 	public String content_view(BoardVO boardVO, Model model) {
 		log.info("content_view();...");
+		
 		model.addAttribute("content_view", boardService.get(boardVO.getBid()));
 		return "/board/content_view";
 	}
@@ -36,6 +38,7 @@ public class BoardController {
 	@GetMapping("/delete")
 	public String delete(BoardVO boardVO, Model model) {
 		log.info("delete();...");
+
 		boardService.remove(boardVO.getBid());
 		return "redirect:/board/list";
 	}
@@ -43,19 +46,22 @@ public class BoardController {
 	@GetMapping("/write_view")
 	public String write_view() {
 		log.info("write_view();...");
+
 		return "/board/write_view";
 	}
 
-	@GetMapping("/write")
+	@GetMapping("/write")		//---------------------post(X)
 	public String write(BoardVO boardVO) {
 		System.out.println("write()...");
+
 		boardService.writeBoard(boardVO);
 		return "redirect:/board/list";
 	}
 
-	@GetMapping("/modify")
+	@GetMapping("/modify")		//---------------------post(X)
 	public String modify(BoardVO boardVO) {
 		System.out.println("modify()...");
+
 		boardService.modifyBoard(boardVO);
 		return "redirect:/board/list";
 	}
@@ -63,13 +69,15 @@ public class BoardController {
 	@GetMapping("/reply_view")
 	public String reply_view(BoardVO boardVO, Model model) {
 		log.info("reply_view();...");
+
 		model.addAttribute("reply_view", boardService.get(boardVO.getBid()));
 		return "/board/reply_view";
 	}
 
-	@PostMapping("/reply")
+	@PostMapping("/reply")		//---------------------post(O)
 	public String reply(BoardVO boardVO) {
 		System.out.println("reply()...");
+
 		boardService.writeReply(boardVO);
 		return "redirect:/board/list";
 	}

@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body">
+	<h3>리스트</h3>
    <table cellpadding="0" cellspacing="0" border="1">
       <tr align="center">
          <td width="50">번호</td>
@@ -34,7 +35,7 @@
          </tr>
       </c:forEach>
       <tr>
-         <td colspan="5"><a href="${pageContext.request.contextPath}/board/write_view">글작성</a></td>
+         <td colspan="5">&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/board/write_view">글작성</a></td>
       </tr>  
    </table>
 </body>
