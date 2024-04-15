@@ -8,35 +8,35 @@
 <title>게시판 프로젝트</title>
 </head>
 <body>
-	<h1>글보기</h1>
-	<table width="500" border="1">
-		<form action="modify.do" mothod="post">
-			<input type="hidden" name="bid" value="${board.bid}">
+	<h3>글보기</h3>
+	<table width="500" cellpadding="0" cellspacing="0" border="1">
+		<form action="${pageContext.request.contextPath}/board/modify" mothod="post">
+			<input type="hidden" name="bid" value="${content_view.bid}">
 			<tr>
 				<td>번호</td>
-				<td>${board.bid}
+				<td>${content_view.bid}
 			</tr>
 			<tr>
 				<td>히트(조회수)</td>
-				<td>${board.bhit}</td>
+				<td>${content_view.bhit}</td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="bname" value="${board.bname}"></td>
+				<td><input type="text" name="bname" value="${content_view.bname}"></td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type=text name="btitle" value="${board.btitle}"></td>
+				<td><input type=text name="btitle" value="${content_view.btitle}"></td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="bcontent" rows="10">${board.bcontent}</textarea></td>
+				<td><textarea name="bcontent" rows="10">${content_view.bcontent}</textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="수정">&nbsp;&nbsp;<a href="list.do">목록보기</a>
-			               &nbsp;&nbsp;<a href="delete.do?bid=${board.bid}">삭제</a>               
-			               &nbsp;&nbsp;<a href="reply_view.do?bid=${board.bid}">답변</a>               
+					<input type="submit" value="수정">&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/board/list">목록보기</a>
+			               &nbsp;&nbsp;<a href="${pageContext.request.contextPath}/board/delete?bid=${content_view.bid}">삭제</a>               
+			               &nbsp;&nbsp;<a href="${pageContext.request.contextPath}/board/reply_view?bid=${content_view.bid}">답변</a>               
 				</td>
 			</tr>
 		</form>
