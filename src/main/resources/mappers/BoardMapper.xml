@@ -23,12 +23,6 @@
     ]]>
     </select>
 
-    <update id="updateHit" parameterType="BoardVO">
-    <![CDATA[
-		update mvc_board set bHit = bHit + 1 where bId = #{bid}
-    ]]>
-    </update>
-
     <insert id="insertBoard" parameterType="BoardVO">
     <![CDATA[
 		insert into mvc_board(bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent)
@@ -62,6 +56,33 @@
     ]]>
     </delete>
 
+
+    <select id="getTotalCount" resultType="int">
+    <![CDATA[
+        select count(*) from mvc_board
+    ]]>
+    </select>
+
+	<select id="getListWithPaging" resultType="BoardVO">
+	<![CDATA[
+		SELECT A.*
+		FROM (
+			SELECT ROWNUM AS RNUM, A.*
+			FROM (
+				SELECT * 
+				FROM mvc_board
+				order by bgroup desc, bstep
+			) A
+			WHERE ROWNUM <= #{pageNum} * #{amount}
+		) A
+		WHERE RNUM > (#{pageNum} - 1) * #{amount}
+	]]>
+	</select>
+       
+       
+       
+       
+       
 </mapper>
 
 

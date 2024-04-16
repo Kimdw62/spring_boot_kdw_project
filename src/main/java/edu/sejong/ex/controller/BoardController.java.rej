@@ -1,0 +1,26 @@
+diff a/src/main/java/edu/sejong/ex/controller/BoardController.java b/src/main/java/edu/sejong/ex/controller/BoardController.java	(rejected hunks)
+@@ -46,19 +46,22 @@
+ 	@GetMapping("/write_view")
+ 	public String write_view() {
+ 		log.info("write_view();...");
++
+ 		return "/board/write_view";
+ 	}
+ 
+-	@GetMapping("/write")
++	@GetMapping("/write")		//---------------------post(X)
+ 	public String write(BoardVO boardVO) {
+ 		System.out.println("write()...");
++
+ 		boardService.writeBoard(boardVO);
+ 		return "redirect:/board/list";
+ 	}
+ 
+-	@GetMapping("/modify")
++	@GetMapping("/modify")		//---------------------post(X)
+ 	public String modify(BoardVO boardVO) {
+ 		System.out.println("modify()...");
++
+ 		boardService.modifyBoard(boardVO);
+ 		return "redirect:/board/list";
+ 	}

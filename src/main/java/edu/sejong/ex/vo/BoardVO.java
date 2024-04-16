@@ -19,7 +19,6 @@ import lombok.ToString;
 //7 BGROUP            NUMBER(4)	//원본
 //8 BSTEP             NUMBER(4)	//세로
 //9 BINDENT           NUMBER(4)	//가로
-
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
