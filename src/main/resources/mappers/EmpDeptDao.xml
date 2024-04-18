@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="edu.sejong.ex.mapper.EmpDeptMapper">
+
+    <select id="getEmpDept" resultType="EmpDeptVO">
+    <![CDATA[
+		select b.empno, b.ename, b.job, b.mgr, b.hiredate, b.sal, b.comm, a.deptno, a.dname,
+		    c.grade, c.losal, c.hisal
+		from dept a inner join emp b
+		on a.deptno = b.deptno
+		inner join salgrade c
+		on b.sal between c.losal and c.hisal
+    ]]>
+    </select>
+
+	<!-- SalGradeVO -->
+	<resultMap id="salGradeMap" type="SalGradeVO">
+		<result property="hisal" column="hisal" />
+		<result property="losal" column="losal" />
+		<result property="grade" column="grade" />
+	</resultMap>
+           
+    <resultMap id="empMap" type="EmpVO">
+    	<id property="empno" column="empno" />
+    	<result property="ename" column="ename" />
+    	<result property="job" column="job" />
+    	<result property="mgr" column="mgr" />
+    	<result property="hiredate" column="hiredate" />
+    	<result property="sal" column="sal" />
+    	<result property="comm" column="comm" />
+    	<result property="deptno" column="deptno" />
+    	<association property="salGrade" resultMap="salGradeMap" />
+    </resultMap>
+       
+    <resultMap id="deptEmpMap" type="DeptEmpVO">
+    	<result property="deptno" column="deptno" />
+    	<result property="dname" column="dname" />
+    	<result property="loc" column="loc" />
+    	<collection property="empList" resultMap = "empMap" />
+    </resultMap>
+       
+    <select id="getDeptEmpList" resultMap="deptEmpMap">
+    <![CDATA[
+		select b.empno, b.ename, b.job, b.mgr, b.hiredate, b.sal, b.comm, a.deptno, a.dname,
+		    c.grade, c.losal, c.hisal
+		from dept a inner join emp b
+		on a.deptno = b.deptno
+		inner join salgrade c
+		on b.sal between c.losal and c.hisal
+    ]]>
+    </select>
+
+    <select id="getEmpTotal" resultType="int">
+    <![CDATA[
+        select count(*) from emp
+    ]]>
+    </select>
+       
+</mapper>
+
+
+<!-- Mapper 기준  -->
+<!-- 
+		select empno, ename, job, mgr, hiredate, sal, comm, deptno, dname
+		from (
+			SELECT A.*
+			FROM (
+				SELECT A.*
+				FROM (
+					select ROWNUM as RNUM, b.*, a.dname, a.loc
+					from dept a inner join emp b
+					on a.deptno = b.deptno
+					order by a.deptno, b.empno
+				) A
+				WHERE ROWNUM <= #{pageNum} * #{amount}
+			) A
+			WHERE RNUM > (#{pageNum} - 1) * #{amount}
+		)
+ -->

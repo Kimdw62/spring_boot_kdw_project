@@ -15,7 +15,7 @@
 <!-- Begin Page Content -->
 	<div class="container">
 		<!-- Page Heading -->
-		<h1 class="h3 mb-2 text-gray-800">리스트</h1>
+		<h1 class="h3 m-3 text-gray-800 text-center">리스트</h1>
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4 text-center">
 			<div class="card-header py-3">
@@ -23,25 +23,43 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-                     <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                             <tr>
-                                 <th>후보번호</th>
-                                 <th>성명</th>
-                                 <th>소속정당</th>
-                                 <th>학력</th>
-                                 <th>주민번호</th>
-                                 <th>지역구</th>
-                                 <th>대표전화</th>
-                                 <th>삭제</th>
-                             </tr>
-                        </thead>
+					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>이름</th>
+								<th>제목</th>
+								<th>날자</th>
+								<th>히트</th>
+								<th>삭제</th>
+							</tr>
+						</thead>
 
 						<tbody>
+							<c:forEach var="board" items="${boards}">
+								<tr>
+									<td align="center">${board.bid}</td>
+									<td align="center">${board.bname}</td>
+									<td>
+										<c:forEach begin="1" end="${board.bindent}">[re]</c:forEach>
+										<a href="${pageContext.request.contextPath}/board/content_view?bid=${board.bid}">${board.btitle}</a>
+									</td>
+									<td align="center">${board.bdate}</td>
+									<td align="center">${board.bhit}</td>
+		                            <td>
+		                            	<button class="btn btn-secondary"><a class="nav-link active" href="${pageContext.request.contextPath}/board/delete?bid=${board.bid}" method="POST">삭제</a></button>
+		                            </td>
+								</tr>
+							</c:forEach>
+<%-- 
+							<tr>
+								<td colspan="5">&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/board/write_view">글작성</a></td>
+							</tr>  
+ --%>
+<%-- 
 		                     <c:forEach var="member" items="${member}">
 		                         <tr>
 		                            <td>${member.m_no}</td>
-<%-- 		                            <td>${member.m_name}</td> --%>
 		                            <td>
 	                                  <a href="${pageContext.request.contextPath}/member/member_view.do?m_no=${member.m_no}" method="POST">${member.m_name}</a>
 		                            </td>
@@ -55,8 +73,13 @@
 		                            </td>
 		                         </tr>
 		                      </c:forEach>
+ --%>		                      
 						</tbody>
-                     </table>
+					</table>
+<%-- 					<td><a href="${pageContext.request.contextPath}/board/write_view">글작성</a></td> --%>
+					<td>
+						<button class="btn btn-outline-primary"><a class="nav-link active" href="${pageContext.request.contextPath}/board/write_view">글작성</a></button>
+					</td>
 
 				</div>
 			</div>
@@ -64,7 +87,7 @@
 	</div>
 
 
-
+<%-- 
 	<h3>리스트</h3>
 	<table cellpadding="0" cellspacing="0" border="1">
 	<tr align="center">
@@ -84,7 +107,7 @@
 				<a href="${pageContext.request.contextPath}/board/content_view?bid=${board.bid}">${board.btitle}</a>
 			</td>
 			<td align="center">${board.bdate}</td>
-<%-- 		<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bdate}" /></td> --%>
+		<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bdate}" /></td>
 			<td align="center">${board.bhit}</td>
 			<td>
 				<a href="${pageContext.request.contextPath}/board/delete?bid=${board.bid}"><button type="button">삭제</button></a>
@@ -95,23 +118,11 @@
 		<td colspan="5">&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/board/write_view">글작성</a></td>
 	</tr>  
 	</table>
+--%>
 
 
-
-
-<%--
-	<c:if test="${pageMaker.prev}">
-		<a href="list2${pageMaker.makeQuery(pageMaker.startPage - 1)}"> << </a>
-	</c:if>
-	<c:forEach var="idx" begin="${pageMaker.startPage}" end="${pageMaker.endPage}" >
-		<a href="list2${pageMaker.makeQuery(idx)}">${idx}</a>
-	</c:forEach>
-	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		<a href="list2${pageMaker.makeQuery(pageMaker.endPage + 1)}"> >> </a>
-	</c:if>
- --%>
 	<nav class="mt-3" aria-label="Page navigation example">
-		<ul class="pagination">
+		<ul class="pagination justify-content-center">
 			<li class="page-item">
 				<c:if test="${pageMaker.prev}">
 					<a class="page-link" href="list2${pageMaker.makeQuery(pageMaker.startPage - 1)}">Prev</a>
@@ -129,6 +140,6 @@
 			</li>
 		</ul>
 	</nav>
-   
+
 </body>
 </html>
