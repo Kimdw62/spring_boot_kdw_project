@@ -37,26 +37,24 @@
 						</thead>
 
 						<tbody>
-							<c:forEach var="dept" items="${deptEmps}">
-								<c:forEach var="emp" items="${dept.empList}">
-									<c:set var="no" value="${no + 1}"></c:set>
-									<tr>
-										<td align="center">${no}</td>
-										<td align="center">${emp.empno}</td>
-										<td>
-											<a href="${pageContext.request.contextPath}/emp/emp_view?empno=${emp.empno}">${emp.ename}</a>
-										</td>
-										<td align="right">
-											<fmt:setLocale value="en_us" />
-											<fmt:formatNumber value="${emp.sal}" type="currency" />
-										</td>
-										<td align="center">${dept.deptno}</td>
-										<td>${dept.dname}</td>
-			                            <td>
-			                            	<button class="btn btn-secondary btn-sm"><a class="nav-link active" href="${pageContext.request.contextPath}/emp/delete?empno=${emp.empno}" method="POST">삭제</a></button>
-			                            </td>
-									</tr>
-								</c:forEach>
+							<c:forEach var="emp" items="${emps}">
+								<c:set var="no" value="${no + 1}"></c:set>
+								<tr>
+									<td align="center">${no}</td>
+									<td align="center">${emp.empno}</td>
+									<td>
+										<a href="${pageContext.request.contextPath}/emp/emp_view?empno=${emp.empno}">${emp.ename}</a>
+									</td>
+									<td align="right">
+										<fmt:setLocale value="en_us" />
+										<fmt:formatNumber value="${emp.sal}" type="currency" />
+									</td>
+									<td align="center">${emp.deptno}</td>
+									<td>${emp.dname}</td>
+		                            <td>
+		                            	<button class="btn btn-secondary btn-sm"><a class="nav-link active" href="${pageContext.request.contextPath}/emp/delete?empno=${emp.empno}" method="POST">삭제</a></button>
+		                            </td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

@@ -31,14 +31,31 @@ public class EmpController {
 		return "/emp/empList";
 	}
 
+	@GetMapping("/list2")
+	public String list2(Model model) {
+		System.out.println("list2()...");
+
+		model.addAttribute("emps", empService.getEmpDept());
+
+		return "/emp/empList2";
+	}
+
 	@GetMapping("/sal")
 	public String salaryList(Model model) {
 		System.out.println("salaryList()...");
 
-//		model.addAttribute("emps", empService.getEmpDept());
 		model.addAttribute("deptEmps", empService.getDeptEmpList());
 
 		return "/emp/empSalary";
+	}
+
+	@GetMapping("/sal2")
+	public String salList(Model model) {
+		System.out.println("salList()...");
+
+		model.addAttribute("emps", empService.getEmpDept());
+
+		return "/emp/empSalary2";
 	}
 
 

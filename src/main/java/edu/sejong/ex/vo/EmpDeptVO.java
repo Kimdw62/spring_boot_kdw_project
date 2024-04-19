@@ -40,4 +40,8 @@ public class EmpDeptVO {
 
 	private String dname;
 	private String loc;	
+
+	private int grade;
+	private int losal;
+	private int hisal;
 }

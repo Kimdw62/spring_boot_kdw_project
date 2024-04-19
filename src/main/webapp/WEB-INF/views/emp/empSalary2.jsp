@@ -15,7 +15,7 @@
 <!-- Begin Page Content -->
 	<div class="container">
 		<!-- Page Heading -->
-		<h1 class="h3 m-3 text-gray-800 text-center">사원리스트</h1>
+		<h1 class="h3 m-3 text-gray-800 text-center">급여리스트</h1>
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4 text-center">
 			<div class="card-header py-3">
@@ -23,7 +23,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -32,37 +32,35 @@
 								<th>급여</th>
 								<th>부서번호</th>
 								<th>부서명</th>
-								<th>삭제</th>
+								<th>등급</th>
+								<th>로우셀</th>
+								<th>하이셀</th>
 							</tr>
 						</thead>
 
 						<tbody>
-							<c:forEach var="dept" items="${deptEmps}">
-								<c:forEach var="emp" items="${dept.empList}">
+							<c:forEach var="emp" items="${emps}">
 									<c:set var="no" value="${no + 1}"></c:set>
 									<tr>
 										<td align="center">${no}</td>
 										<td align="center">${emp.empno}</td>
-										<td>
-											<a href="${pageContext.request.contextPath}/emp/emp_view?empno=${emp.empno}">${emp.ename}</a>
-										</td>
+										<td>${emp.ename}</td>
 										<td align="right">
-											<fmt:setLocale value="en_us" />
 											<fmt:formatNumber value="${emp.sal}" type="currency" />
 										</td>
-										<td align="center">${dept.deptno}</td>
-										<td>${dept.dname}</td>
-			                            <td>
-			                            	<button class="btn btn-secondary btn-sm"><a class="nav-link active" href="${pageContext.request.contextPath}/emp/delete?empno=${emp.empno}" method="POST">삭제</a></button>
-			                            </td>
+										<td align="center">${emp.deptno}</td>
+										<td>${emp.dname}</td>
+										<td align="center">${emp.grade}</td>
+										<td align="right">
+											<fmt:formatNumber value="${emp.losal}" type="currency" />
+										</td>
+										<td align="right">
+											<fmt:formatNumber value="${emp.hisal}" type="currency" />
+										</td>
 									</tr>
-								</c:forEach>
 							</c:forEach>
 						</tbody>
 					</table>
-					<td>
-						<button class="btn btn-outline-primary" style="--bs-btn-font-size: .70rem;"><a class="nav-link active" href="${pageContext.request.contextPath}/emp/write_view">사원등록</a></button>
-					</td>
 				</div>
 			</div>
 		</div>
