@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 //이름       널?       유형            
 //-------- -------- ------------- 
@@ -18,11 +19,11 @@ import lombok.Setter;
 //7 BGROUP            NUMBER(4)	//원본
 //8 BSTEP             NUMBER(4)	//세로
 //9 BINDENT           NUMBER(4)	//가로
-
 @AllArgsConstructor
 @Getter
 @NoArgsConstructor
 @Setter
+@ToString
 public class BoardVO {
 	private int bid;
 	private String bname;
